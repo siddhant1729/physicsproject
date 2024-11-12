@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <math.h>
+
+int ordinput()
+
+{
+    int ord;
+    printf("Enter the value of maximum order: ");
+    scanf("%d", &ord);
+    if (ord <= 0)
+    {
+        printf("Invalid Input!!! Please Enter again: ");
+        ordinput();
+    }
+    return ord;
+}
+
+void wavelength()
+{
+    int order, num;
+    float d, wav, wavnm;
+
+    double theta;
+    order = ordinput();
+    printf("Enter the number of lines per inch: ");
+    scanf("%d", &num);
+    d = 2.54 / num;
+
+    printf("Value of Grating Element: %f cm", d);
+    printf("\nEnter the angle of diffraction (theta) in degrees: ");
+    scanf("%lf", &theta);
+    theta = theta * 0.0174532925;
+    wav = d / order * sin(theta);
+    wavnm = wav / (0.0000001);
+    printf("\n\nThe value of Wavelength of light: %f cm i.e., %f nm", wav, wavnm);
+    printf("\n\n");
+}
+
+void maxorder()
+
+{
+    float wavnm, wavcm, d, maxorder;
+    int num, finord;
+    printf("Enter the Wavelength of light (in nm): ");
+    scanf("%f", &wavnm);
+    printf("Enter the number of lines per inch: ");
+    scanf("%d", &num);
+
+    d = 2.54 / num;
+    printf("Value of Grating element: %f cm", d);
+    wavcm = wavnm * (0.00000001);
+    maxorder = d / wavcm;
+    finord = floor(maxorder);
+    printf("\n\nThe Maximum order is calculated to be: %d", finord);
+    printf("\n\n");
+}
+
+int main()
+{
+    printf("<---------- WELCOME TO THE PROGRAM------------------>\n");
+    int ch = 10;
+    while (ch != 0)
+    {
+
+        printf(" 1-- CALCULATE THE WAVELENGTH OF LIGHT\n 2-- CALCULATE THE MAXIMUM ORDER USING GIVEN WAVELENGTH\n 0-- EXIT PROGRAM");
+        printf("\nEnter your choice: ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            wavelength();
+            break;
+
+        case 2:
+            maxorder();
+            break;
+        case 0:
+            break;
+        default:
+            printf("Invalid Input!!! Please enter again: \n");
+            switch (ch)
+                ;
+        }
+    }
+    printf("\n<---------- END OF THE PROGRAM----------->");
+}
